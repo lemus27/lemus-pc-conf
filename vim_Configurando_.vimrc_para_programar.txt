@@ -1,0 +1,228 @@
+http://plagelao.blogspot.mx/2011/02/my-vim-configuration-part-1-view.html
+
+poner vim como editor  predeterminado
+
+sudo update-alternatives –config editor y 
+elegir la opcion correcta
+
+abrir  vim y escribir el comando  :echo $VIM  y no responde con la ruta  donde  se encuenra  .vimrc
+pero este  vimrc (/usr/share/) es un enlace simbolico a /etc/vim/ (usar ls -l)
+en /etc/vim/ esta  vimrc, global, es preferible  no modificrlo
+ir a home/user/, aqui esta o crear .vimrc, este  es el recomendado para el usuario en cuestion
+en el .vimrc del usuario en cuestion modificar:
+*************************************************************************++
+usar vimrc desde  drop box
+1.- ir a /etc/vim
+2.- renombrar vimrc  a  vimrc_bk
+3.- crear un en lace  simbolico a la ruta  de  vimrc_con  en dropbox
+3.1.-    ln -s  /ruta a vimrc_conf  en drpbox   vimrc
+fin
+*********************************************************************
+" file syntax color on
+syntax on
+filetype on " enable file type detection
+ 
+" colors
+set t_Co=256 " use 256 colors
+ 
+" show when you are in insert or visual mode
+set showmode
+ 
+" highlight the line containing the cursor
+set cursorline
+ 
+" show unwanted whitespace
+set listchars=tab:-✈,trail:,extends:>
+set list!
+ 
+" fast terminal connection
+set ttyfast
+ 
+" show line numbers
+set number
+ 
+" status line
+set showcmd " show status line
+set laststatus=2 " show the status line always
+set statusline=%f\ %(%m%r%h\ %)%([%Y]%)%=%<%-20{getcwd()}\ [b%n]\ %l/%L\ ~\ %p%%\ \
+"Colocar un esquema de  colores
+"debes  descarar uno de :http://www.vim.org/scripts/script_search_results.php?keywords=&script_type=color+scheme&order_by=rating&direction=descending&search=search
+"o diseñar uno propio
+colorscheme oceandeep
+
+"How to install a vim plugin
+"Vim plugins are just scripts and to install them you only need to copy the script file in the right directory. Ok, this looks very similar to the way we add color schemes to our Vim, doesn't it? Yes, the only thing we need to change is the directory. When we install a plugin, we have to add the script file to the 'plugin' (or 'ftplugin' if it is a file-type-dependent script) directory in our .vim directory. Sooo easy :D
+
+"Yes, so easy. But, do I have to do that every time I get a new plugin or every time I update an old one? Cannot this process be automated? Yes, it can! There are a lot of tools to manage your plugin dependencies. I am using Vundle right now.
+
+"Vundle
+"Vundle is a plugin management tool for vim. It is very easy to set up and it is very easy to use. You only need to follow their instructions to "install" it. Once you have everything in its right place, you have to add those two lines to your .vimrc file:
+
+
+" vundle
+" set rtp+=~/.vim/vundle.git/
+" call vundle#rc()
+"
+"Vim plugins
+"Ok, so, how do I install plugins with Vundle? You only need to add the
+"plugins you want to your .vimrc file (with the Vundler format). I have those:
+"Examples
+"*********************************************************************
+"" Bundles
+" Ruby on Rails: easy file navigation, enhanced syntax highlighting, and more
+" Bundle "rails.vim"
+" " plugin for ack
+" Bundle "ack.vim"
+" " A tree explorer plugin for navigating the filesystem
+" Bundle "The-NERD-tree"
+" " provides syntax highlightling, indenting, and a filetype plugin for
+" Cucumber
+" Bundle "cucumber.zip"
+" " provides haml syntax highlightling
+" Bundle "Haml"
+" " Wisely add 'end' in ruby, endfunction/endif/more in vim script, etc
+" Bundle "endwise.vim"
+" " Delete/change/add parentheses/quotes/XML-tags/much more with ease
+" Bundle "surround.vim"
+" " Pairs of handy bracket mappings
+" Bundle "unimpaired.vim"
+" " Ruby refactoring tool
+" Bundle "http://github.com/ecomba/vim-ruby-refactoring.git"
+"**********************************************************************
+" view raw gistfile2.vim This Gist brought to you by GitHub.
+"
+" As you can see, you can ask for the plugin by its "official" name or you can
+" linked it to its github repository.
+"
+" Once you've defined the plugins you want you only need to type:
+" 1 	
+"
+" :BundleInstall
+"
+"
+"Taglist
+"
+"Este plugin sirve para tener un acceso mas comodo a las variables, funciones
+"y bloques dentro de nuestro codigo. Es muy util si tienen un archivo muy
+"grande y quieren moverse facilmente entre funciones y procedimientos.
+"
+"Este plugin requiere que instalen “exuberant-ctags” que seguramente se
+"encuentra en los repositorios de cualquier distro que usen. Luego de eso
+"deberan ir a esta pagina y bajar el plugin. Otra vez dentro del comprimido
+"nos encontramos con 2 carpetas (doc y plugin) y repetimos el proceso del
+"plugin anterior para instalar este.
+"
+"Para usarlo tenemos que llamar al comando :TlistToggle desde vim. Pero como
+"eso es muy dificil de memorizar vamos a crear un atajo de teclado agregando
+"lo siguiente en el archivo ~/.vimrc (crearlo si no lo tienen):
+"
+"    map <F3> :TlistToggle<cr>
+
+"SHORTCUTS (ATAJOS)
+" Continuing with my explanation of my Vim configuration (you can have a look
+" at my view settings and my plugin settings), today is the day of the
+" shortcuts :)
+"
+" Everyone of us love the shortcuts our favorite IDE has. Vim is no less and
+" you can define whatever shortcut you need :)
+"
+" How to define a shortcut in Vim
+" It is very easy to define a shortcut in Vim, you only need to map the key
+" combination you one to use with the actual command you want to execute.
+" To map a combination you can use map or noremap (and all the variants for
+" each mode, like imap, inoremap, nmap, nnoremap, etc...). The difference
+" between map and noremap is that the second one is not recursive. You have a
+" very good explanation here.
+" You can see an example of a shortcut definition:
+" 1 	
+"
+" map close :q!<CR>
+"
+
+"
+" This shortcut closes Vim without saving the file and can be executed by
+" pressing the keys 'c', 'l', 'o', 's' and 'e'
+"
+" Leader
+" The previous example is more or less a "hard code" shortcut :) A better way
+" to map commands is using the leader variable, so you start your shortcut by
+" pressing your leader combination.
+" To define your leader combination you only need to do something like this:
+" 1 	
+"
+" let mapleader = ","
+"
+
+"
+" In this case, my leader combination is just the ',' key :)
+"
+" It is important to define your leader combination because a lot of the
+" existing plugins for Vim use it for their own shortcuts (mappings).
+"
+" My shortcuts
+" Ok, now that we have defined the leader, let's have a look to my actual
+" shortcuts.
+" The first one I want to show you is how to change between the actual buffer
+" and the alternative buffer (If you don't know anything about Vim buffers,
+" take a look at this video, it is great!)
+" 1 2 	
+"
+" " change buffer mapping
+" nnoremap <leader>6 :b#<CR>
+"
+" view raw gistfile3.vim This Gist brought to you by GitHub.
+"
+" What I'm doing here is mapping ',' and '6' to ':b#' (:b# is what you have to
+" type to switch buffers when in normal mode. means that, after the command, I
+" want to press 'return', executing the command). I'm using nnoremap for this
+" shortcut because I want to use it only in normal mode (the first n of
+" nnoremap) and because if some of my plugins map any ':', 'b' or '#' key to
+" any command I don't want to execute that shortcut (not recursive), I just
+" want to execute ':b#'.
+"
+" The next shortcuts are related to some plugins I use:
+" 1 2 3 4 5 	
+"
+" " Ack maping
+" nnoremap <leader>a :Ack
+" " NERDTree maping
+" map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+"
+" view raw gistfile2.vim This Gist brought to you by GitHub.
+"
+" I just map the NERD tree to ',d' and a little bit of help every time I want
+" to use ack (only in normal mode) :P
+"
+" Then, I have two shortcut for removing the extra spaces (at the end of the
+" line) and to change tabs with 2 spaces :)
+" 1 2 3 	
+"
+" " remove spaces mapping
+" nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+" nnoremap <leader>T :%s/\t/ /<cr>
+"
+" view raw gistfile5.vim This Gist brought to you by GitHub.
+"
+" I also have a shortcut that changes the ruby hashes (with a symbol as key)
+" from 1.8 syntax to 1.9 syntax:
+" 1 2 	
+"
+" " change symbol key hashes to ruby 1.9 syntax mapper
+" map <leader>H :%s/:\(\w\+\) =>/\1:<CR>``
+"
+" view raw gistfile6.vim This Gist brought to you by GitHub.
+"
+" And last, but not least, I map the tab as a match bracket finder:
+" 1 2 3 4 5 6 	
+"
+" " tab matches brackets
+" " in normal mode
+" nnoremap <tab> %
+" " in visual mode
+" vnoremap <tab> %
+"
+" view raw gistfile4.vim This Gist brought to you by GitHub.
+"
+" I probably change all of this shortcuts in the future, when I get more
+" experience with Vim, but I hope it shows you how powerful (and customizable)
+" Vim is :)
