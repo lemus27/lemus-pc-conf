@@ -1,0 +1,95 @@
+"atajo"
+let mapleader = ","
+let g:EasyMotion_leader_key = '<Space>'
+"let g:SuperTabDefaultCompletionType = ""
+" NERDTree maping
+"map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+ map <F3> :NERDTreeToggle<cr>
+"map tag list to F$
+map <F4> :TlistToggle<cr>
+map <leader>t :tabnew<cr>
+map <leader>tn : tabn<cr>
+"***************************************************************
+"syntax color on
+syntax on
+filetype on " enable file type detection
+"colors 
+set t_Co=256 " use 256 colors
+
+" show when you are in insert or visual mode
+set showmode
+
+" highlight the line containing the cursor
+set cursorline
+
+" show unwanted whitespace
+"set listchars=tab:<->,trail:{-},extends:>
+"set list!
+
+" fast terminal connection
+set ttyfast
+
+" show line numbers
+set number
+
+" status line
+set showcmd " show status line
+set laststatus=2 " show the status line always
+set statusline=%f\ %(%m%r%h\ %)%([%Y]%)%=%<%-20{getcwd()}\ [b%n]\ %l/%L\ ~\ %p%%\ \
+"Las tres primeras opciones son relativas al modo de indentar. La última es la más jugosa, te indica con una pequeña señal, cual es el [/(/{ que has cerrado.
+set autoindent cindent smartindent showmatch
+"La longitud de indentación por defecto del Vim es de 8 espacios. Esto se
+"puede modificar añadiendo
+"set sw=N
+"colocar un esq	uema de  colores
+"colorscheme oceandeep
+colorscheme burnttoast256
+colorscheme desert
+
+"configuradndo vumdle : gestor de  plugins
+  set nocompatible               " be iMproved
+ filetype off                   " required!
+
+ set rtp+=~/.vim/bundle/vundle/
+ call vundle#rc()
+
+ " let Vundle manage Vundle
+ " required!
+ Bundle 'gmarik/vundle'
+
+ " My Bundles here:
+ "
+ " original repos on github
+"******************************************************
+" A tree explorer plugin for navigating the filesystem
+Bundle "The-NERD-tree"
+" provides syntax highlightling, indenting, and a filetype plugin for Cucumber
+Bundle "cucumber.zip"
+" provides haml syntax highlightling
+Bundle "endwise.vim"
+" Delete/change/add parentheses/quotes/XML-tags/much more with ease
+Bundle "surround.vim"
+" Pairs of handy bracket mappings
+Bundle "unimpaired.vim"
+"para  comentar codigo en modo visual  NerdCommenter
+Bundle "https://github.com/scrooloose/nerdcommenter.git"
+"completor: you completme
+Bundle "https://github.com/Valloric/YouCompleteMe"
+"File Explorer VE
+Bundle "https://github.com/mbbill/VimExplorer"
+"MiniBufferEX buffer superior  para explorar pestañas
+Bundle "https://github.com/fholgado/minibufexpl.vim"
+"netrw  remote  work
+Bundle "https://github.com/vim-scripts/netrw.vim"
+"taglist; hotlist  de  funiones  clases ydemas  estructuras
+Bundle "https://github.com/vim-scripts/taglist.vim.git"
+"fugitive; git manager pluguin
+Bundle "https://github.com/tpope/vim-fugitive.git"
+"CommandT; rapid file  opener
+Bundle "git://git.wincent.com/command-t.git"
+"EasyMotyion; easy move to location in text
+Bundle "https://github.com/Lokaltog/vim-easymotion.git"
+"supertab; word completion for local file
+Bundle "https://github.com/ervandew/supertab.git"
+"********************************************************************
+filetype plugin indent on     " required!
